@@ -1,2 +1,2 @@
 # madrasati
-ENT for arabic and pricate schools
+ENT for arabic and private schools
