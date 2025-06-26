@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "utilisateur")
 public class Utilisateur {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String nom;
