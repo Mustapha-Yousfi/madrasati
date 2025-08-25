@@ -1,9 +1,7 @@
 package com.madrasati.backend.controller;
 
 import com.madrasati.backend.model.Professor;
-import com.madrasati.backend.model.Student;
 import com.madrasati.backend.service.ProfessorService;
-import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
