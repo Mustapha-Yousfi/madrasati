@@ -18,12 +18,13 @@ public class UserService {
 
     public UserResponse register(RegisterRequest registerRequest) {
 
-        if (userRepository.findByEmail(registerRequest.getEmail()).isPresent()) {
+        if (userRepository.findByUserName(registerRequest.getUserName()).isPresent()) {
 
             throw new RuntimeException("Email already exists");
         }
 
         User user = User.builder()
+                .userName(registerRequest.getUserName())
                 .firstName(registerRequest.getFirstName())
                 .lastName(registerRequest.getLastName())
                 .email(registerRequest.getEmail())
@@ -35,6 +36,7 @@ public class UserService {
 
         return UserResponse.builder()
                 .id(savedUser.getId())
+                .userName(savedUser.getUserName())
                 .email(savedUser.getEmail())
                 .firstName(savedUser.getFirstName())
                 .lastName(savedUser.getLastName())
