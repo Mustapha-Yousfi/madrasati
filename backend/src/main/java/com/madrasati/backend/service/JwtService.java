@@ -13,9 +13,9 @@ import java.util.Map;
 public class JwtService {
     private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
-    public String generateToken(String userName, Map<String, Object> extraClaims) {
+    public String generateToken(String username, Map<String, Object> extraClaims) {
         return Jwts.builder()
-                .setSubject(userName)
+                .setSubject(username)
                 .addClaims(extraClaims)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000)) // 1 jour
@@ -23,7 +23,7 @@ public class JwtService {
                 .compact();
     }
 
-    public String extractUserName(String token) {
+    public String extractUsername(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()

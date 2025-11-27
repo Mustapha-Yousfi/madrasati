@@ -65,6 +65,11 @@
       <!-- BOUTON SUBMIT -->
       <button type="submit" class="submit-btn" [disabled]="form.invalid">Se connecter</button>
     </form>
+    @if (backendError !== '') {
+      <div class="backend-error">
+        {{ backendError }}
+      </div>
+    }
     <div class="store-links">
       <img src="/appstore.png" alt="App Store" />
       <img src="/play-store.png" alt="Google Play" />

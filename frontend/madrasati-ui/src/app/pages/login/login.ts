@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Auth } from '../../services/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +11,12 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export class Login {
   private fb = inject(FormBuilder);
+  private auth = inject(Auth);
+  private router = inject(Router);
+
   submitted = false;
   showPassword = false;
+  backendError = '';
 
   form = this.fb.group({
     username: ['', Validators.required],
@@ -25,6 +31,20 @@ export class Login {
       return;
     }
 
+    const payload = {
+      username: this.form.value.username!,
+      password: this.form.value.password!,
+    };
+    this.auth.login(payload).subscribe({
+      next: (res) => {
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        console.error('Erreur de login : ', err);
+        this.backendError = 'Identifiants incorrects. Veuillez réessayer.';
+      },
+    });
     console.log('Données envoyées :', this.form.value);
   }
 }

@@ -19,7 +19,7 @@ public class AuthService {
 
     public AuthenticationResponse login(AuthenticationRequest request) {
 
-        User user = userRepository.findByUserName(request.getUserName())
+        User user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
@@ -27,13 +27,13 @@ public class AuthService {
         }
 
         String token = jwtService.generateToken(
-                user.getUserName(),
+                user.getUsername(),
                 Map.of("role", user.getRole().name())
         );
 
         return AuthenticationResponse.builder()
                 .token(token)
-                .userName(user.getUserName())
+                .username(user.getUsername())
                 .email(user.getEmail())
                 .role(user.getRole().name())
                 .build();
