@@ -1,0 +1,230 @@
+/* Fond général */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eef1f5;
+  padding: 16px;
+}
+
+/* Carte centrale */
+.login-card {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Titre */
+.login-card h1 {
+  text-align: center;
+  font-size: 26px;
+  margin: 0;
+  color: #2c2c2c;
+}
+
+/* Formulaire */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Groupes d'inputs */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Label */
+.input-group label {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Inputs */
+.input-group input {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  font-size: 15px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  border-color: #3f51b5;
+  box-shadow: 0 0 0 1px rgba(63, 81, 181, 0.2);
+}
+
+/* Message d'erreur */
+.error {
+  font-size: 13px;
+  color: #d9534f;
+}
+
+/* Password group */
+.password-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Wrapper pour input + icône */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Input mot de passe (même style que les autres) */
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; // laisser la place pour l'icône
+}
+
+/* Bouton icône œil */
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icône oeil générique */
+.icon-eye,
+.icon-eye-off {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+/* Oeil simple : ellipse + pupille */
+.icon-eye::before {
+  content: '';
+  position: absolute;
+  inset: 4px 2px;
+  border-radius: 50%;
+  border: 2px solid #555;
+}
+
+.icon-eye::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #555;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Oeil barré */
+.icon-eye-off::before {
+  content: '';
+  position: absolute;
+  inset: 4px 2px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  opacity: 0.7;
+}
+
+.icon-eye-off::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  top: 50%;
+  height: 2px;
+  background: #555;
+  transform: rotate(-35deg);
+}
+
+/* Ligne options (checkbox + lien) */
+.options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 14px;
+}
+
+/* Checkbox "se souvenir" */
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.remember-me input {
+  width: 16px;
+  height: 16px;
+}
+
+/* Bouton "mot de passe oublié" */
+.forgot-password {
+  background: none;
+  border: none;
+  color: #3f51b5;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+}
+
+/* Bouton submit (même largeur que les inputs) */
+.submit-btn {
+  padding: 12px 14px;
+  background: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #31409b;
+}
+
+.submit-btn:disabled {
+  background: #9aa5c8;
+  cursor: not-allowed;
+}
+
+.store-links {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+
+  img {
+    height: 36px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  img:hover {
+    transform: scale(1.05);
+  }
+}

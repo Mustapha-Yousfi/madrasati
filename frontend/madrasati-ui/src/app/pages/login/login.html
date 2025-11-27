@@ -1,0 +1,73 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1>Bienvenue sur Madrasati</h1>
+
+    <form #f="ngForm" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!-- USERNAME -->
+      <div class="input-group">
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          placeholder="Nom d'utilisateur"
+        />
+
+        @if (
+          form.controls['username'].hasError('required') &&
+          (form.controls['username'].touched || submitted)
+        ) {
+          <div class="error">Le nom d'utilisateur est obligatoire.</div>
+        }
+      </div>
+
+      <!-- PASSWORD + ICÔNE OEIL -->
+      <div class="input-group password-group">
+        <div class="password-wrapper">
+          <input
+            id="password"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Mot de passe"
+          />
+
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="showPassword = !showPassword"
+            aria-label="Afficher / masquer le mot de passe"
+          >
+            @if (showPassword) {
+              <span class="icon-eye-off"></span>
+            } @else {
+              <span class="icon-eye"></span>
+            }
+          </button>
+        </div>
+
+        @if (
+          form.controls['password'].hasError('required') &&
+          (form.controls['password'].touched || submitted)
+        ) {
+          <div class="error">Le mot de passe est obligatoire.</div>
+        }
+      </div>
+
+      <!-- OPTIONS : REMEMBER + FORGOT -->
+      <div class="options-row">
+        <label class="remember-me">
+          <input type="checkbox" formControlName="rememberMe" />
+          <span>Se souvenir de moi</span>
+        </label>
+
+        <button type="button" class="forgot-password">Mot de passe oublié ?</button>
+      </div>
+
+      <!-- BOUTON SUBMIT -->
+      <button type="submit" class="submit-btn" [disabled]="form.invalid">Se connecter</button>
+    </form>
+    <div class="store-links">
+      <img src="/appstore.png" alt="App Store" />
+      <img src="/play-store.png" alt="Google Play" />
+    </div>
+  </div>
+</div>
