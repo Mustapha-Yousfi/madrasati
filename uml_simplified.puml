@@ -1,0 +1,238 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+'======================
+'   ÉCOLE / STRUCTURE
+'======================
+
+class Ecole {
+  +id : Long
+  +nom : String
+  +adresse : String
+  +pays : String
+  +langueParDefaut : String
+  +fuseauHoraire : String
+  +weekendDays : String
+  +systemeNotation : String
+  +logoUrl : String
+  +themeCouleurs : String
+}
+
+class Cycle {
+  +id : Long
+  +nomCycle : String
+  +ordreCycle : int
+}
+
+class Classe {
+  +id : Long
+  +nom : String
+  +niveau : String
+  +effectifMax : int
+}
+
+class Matiere {
+  +id : Long
+  +nom : String
+  +code : String
+  +couleur : String
+}
+
+Ecole "1" -- "0..*" Cycle
+Cycle "1" -- "0..*" Classe
+Cycle "1" -- "0..*" Matiere
+Classe "1" -- "0..*" Matiere : enseigne>
+
+
+
+'======================
+'   UTILISATEURS
+'======================
+
+class Utilisateur {
+  +id : Long
+  +identifiant : String
+  +motDePasse : String
+  +role : String
+  +prenom : String
+  +nom : String
+  +dateNaissance : Date
+  +genre : String
+  +telephone : String
+  +actif : boolean
+}
+
+class Eleve {
+  +matricule : String
+  +dateInscription : Date
+  +statut : String
+}
+
+class Parent {
+  +profession : String
+}
+
+class ParentEleve {
+  +typeLien : String
+}
+
+class Professeur {
+  +specialite : String
+}
+
+Utilisateur <|-- Eleve
+Utilisateur <|-- Professeur
+Utilisateur <|-- Parent
+
+Eleve "1" -- "1" Classe
+Parent "1" -- "0..*" ParentEleve
+Eleve "1" -- "0..*" ParentEleve
+
+
+
+'======================
+'   EMPLOI DU TEMPS
+'======================
+
+class Cours {
+  +id : Long
+  +jourSemaine : int
+  +heureDebut : Time
+  +heureFin : Time
+  +salle : String
+}
+
+Classe "1" -- "0..*" Cours
+Professeur "1" -- "0..*" Cours
+Matiere "1" -- "0..*" Cours
+
+
+
+'======================
+'   DEVOIRS
+'======================
+
+class Devoir {
+  +id : Long
+  +datePublication : Date
+  +dateLimite : Date
+  +description : String
+  +fichierUrl : String
+}
+
+class DevoirRealise {
+  +id : Long
+  +dateRemise : Date
+  +statut : String
+  +fichierUrl : String
+}
+
+Classe "1" -- "0..*" Devoir
+Matiere "1" -- "0..*" Devoir
+Professeur "1" -- "0..*" Devoir
+
+Devoir "1" -- "0..*" DevoirRealise
+Eleve "1" -- "0..*" DevoirRealise
+
+
+
+'======================
+'   NOTES / BULLETINS
+'======================
+
+class Evaluation {
+  +id : Long
+  +date : Date
+  +description : String
+  +coefficient : float
+  +bareme : int
+}
+
+class Note {
+  +id : Long
+  +valeur : float
+  +commentaireProf : String
+}
+
+class Bulletin {
+  +id : Long
+  +trimestre : int
+  +dateGeneration : Date
+  +moyenneGenerale : float
+}
+
+class BulletinDetail {
+  +id : Long
+  +moyenneMatiere : float
+  +appreciation : String
+}
+
+Classe "1" -- "0..*" Evaluation
+Matiere "1" -- "0..*" Evaluation
+Professeur "1" -- "0..*" Evaluation
+
+Evaluation "1" -- "0..*" Note
+Eleve "1" -- "0..*" Note
+
+Eleve "1" -- "0..*" Bulletin
+Bulletin "1" -- "0..*" BulletinDetail
+Matiere "1" -- "0..*" BulletinDetail
+
+
+
+'======================
+'   PRÉSENCES
+'======================
+
+class Absence {
+  +id : Long
+  +date : Date
+  +heureDebut : Time
+  +heureFin : Time
+  +motif : String
+  +justifiee : boolean
+}
+
+class Retard {
+  +id : Long
+  +date : Date
+  +heureArrivee : Time
+  +motif : String
+}
+
+Eleve "1" -- "0..*" Absence
+Eleve "1" -- "0..*" Retard
+
+
+
+'======================
+'   MESSAGERIE
+'======================
+
+class Message {
+  +id : Long
+  +dateEnvoi : Date
+  +contenu : String
+  +lu : boolean
+}
+
+Utilisateur "1" -- "0..*" Message : envoie>
+Utilisateur "1" -- "0..*" Message : reçoit>
+
+
+
+'======================
+'   PARAMÉTRAGE ÉCOLE
+'======================
+
+class ParametreEcole {
+  +id : Long
+  +cle : String
+  +valeur : String
+}
+
+Ecole "1" -- "0..*" ParametreEcole
+
+
+
+@enduml
