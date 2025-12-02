@@ -1,11 +1,14 @@
 package com.madrasati.backend.controller;
 
 import com.madrasati.backend.dto.CreateSchoolRequest;
+import com.madrasati.backend.dto.SchoolListItem;
 import com.madrasati.backend.dto.SchoolResponse;
 import com.madrasati.backend.service.SchoolService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -14,6 +17,10 @@ public class SchoolController {
 
     private final SchoolService schoolService;
 
+    @GetMapping
+    public ResponseEntity<List<SchoolListItem>> getAllSchools() {
+        return ResponseEntity.ok(schoolService.getAllSchools());
+    }
     @PostMapping
     public ResponseEntity<SchoolResponse> createSchool(@RequestBody CreateSchoolRequest createSchoolRequest) {
 
