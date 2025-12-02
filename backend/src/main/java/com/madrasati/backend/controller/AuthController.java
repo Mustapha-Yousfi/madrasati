@@ -5,7 +5,7 @@ import com.madrasati.backend.dto.AuthenticationResponse;
 import com.madrasati.backend.dto.RegisterRequest;
 import com.madrasati.backend.dto.UserResponse;
 import com.madrasati.backend.service.AuthService;
-import com.madrasati.backend.service.UserService;
+import com.madrasati.backend.service.CustomUserDetailsService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final UserService userService;
+    private final CustomUserDetailsService customUserDetailsService;
     private final AuthService authService;
 
     @PostMapping("/register")
     public UserResponse register(@Valid @RequestBody RegisterRequest registerRequest) {
-        return userService.register(registerRequest);
+        return customUserDetailsService.register(registerRequest);
     }
 
     @PostMapping("/login")
