@@ -1,1 +1,25 @@
-<h1>Bienvenue sur Madrasati 🎓</h1>
+@if (currentUser) {
+  <div class="dashboard-container">
+    <div class="dashboard-card">
+      <h2>Bienvenue, {{ currentUser.firstName }}</h2>
+      <p><strong>E-mail:</strong> {{ currentUser.email }}</p>
+
+      <div class="section">
+        <ul>
+          <li>
+            <p><strong>Nom:</strong>{{ currentUser.lastName }}</p>
+          </li>
+          <li>
+            <p><strong>Prénom:</strong>{{ currentUser.firstName }}</p>
+          </li>
+          <li>
+            <p><strong>Identifiant:</strong>{{ currentUser.username }}</p>
+          </li>
+          <li>
+            <p><strong>Rôle:</strong>{{ currentUser.role }}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+}
