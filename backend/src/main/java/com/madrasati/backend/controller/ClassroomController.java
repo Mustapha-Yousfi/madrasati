@@ -23,8 +23,8 @@ public class ClassroomController {
     }
 
     @PostMapping
-    public ResponseEntity<ClassroomResponse> createClassRoom(@RequestBody CreateClassRequest createClassRequest) {
-        ClassroomResponse classRoomResponse= classroomService.createClassRoom(createClassRequest);
+    public ResponseEntity<ClassroomResponse> createClassroom(@RequestBody CreateClassRequest createClassRequest) {
+        ClassroomResponse classRoomResponse= classroomService.createClassroom(createClassRequest);
         return ResponseEntity.ok().body(classRoomResponse);
     }
 }

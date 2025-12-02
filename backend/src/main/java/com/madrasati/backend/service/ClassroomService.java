@@ -20,7 +20,7 @@ public class ClassroomService {
     private final ClassroomRepository classroomRepository;
     private final SchoolRepository schoolRepository;
 
-    public ClassroomResponse createClassRoom(CreateClassRequest createClassRequest) {
+    public ClassroomResponse createClassroom(CreateClassRequest createClassRequest) {
 
         School school = schoolRepository.findById(createClassRequest.getSchoolId())
                 .orElseThrow(() -> new SchoolNotFoundException("School not found"));
