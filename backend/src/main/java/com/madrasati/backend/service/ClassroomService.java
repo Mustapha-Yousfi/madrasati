@@ -1,6 +1,7 @@
 package com.madrasati.backend.service;
 
 
+import com.madrasati.backend.dto.ClassroomListItem;
 import com.madrasati.backend.dto.ClassroomResponse;
 import com.madrasati.backend.dto.CreateClassRequest;
 import com.madrasati.backend.entity.Classroom;
@@ -10,6 +11,8 @@ import com.madrasati.backend.repository.ClassroomRepository;
 import com.madrasati.backend.repository.SchoolRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -29,12 +32,28 @@ public class ClassroomService {
                 .build();
         Classroom savedClassRoom = classroomRepository.save(classRoom);
 
-        return ClassroomResponse.builder()
-                .id(savedClassRoom.getId())
-                .name(savedClassRoom.getName())
-                .level(savedClassRoom.getLevel())
-                .schoolId(savedClassRoom.getSchool().getId())
-                .build();
+        return mapToClassroomResponse(savedClassRoom);
 
+    }
+
+    public List<ClassroomListItem> getAllClassrooms() {
+        return classroomRepository.findAll().stream().map(this::mapToClassroomListItem).toList();
+    }
+
+    private ClassroomResponse mapToClassroomResponse(Classroom classroom) {
+        return ClassroomResponse.builder()
+                .id(classroom.getId())
+                .name(classroom.getName())
+                .level(classroom.getLevel())
+                .schoolId(classroom.getSchool().getId())
+                .build();
+    }
+    private ClassroomListItem mapToClassroomListItem(Classroom classroom) {
+        return ClassroomListItem.builder()
+                .id(classroom.getId())
+                .name(classroom.getName())
+                .level(classroom.getLevel())
+                .schoolId(classroom.getSchool().getId())
+                .build();
     }
 }

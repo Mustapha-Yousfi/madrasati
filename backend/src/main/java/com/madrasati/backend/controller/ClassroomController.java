@@ -1,14 +1,14 @@
 package com.madrasati.backend.controller;
 
+import com.madrasati.backend.dto.ClassroomListItem;
 import com.madrasati.backend.dto.ClassroomResponse;
 import com.madrasati.backend.dto.CreateClassRequest;
 import com.madrasati.backend.service.ClassroomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClassroomController {
 
     private final ClassroomService classroomService;
+
+    @GetMapping
+    public ResponseEntity<List<ClassroomListItem>> getAllClassrooms() {
+        return ResponseEntity.ok(classroomService.getAllClassrooms());
+    }
 
     @PostMapping
     public ResponseEntity<ClassroomResponse> createClassRoom(@RequestBody CreateClassRequest createClassRequest) {
