@@ -27,8 +27,8 @@ public class AuthService {
         }
 
         String token = jwtService.generateToken(
-                user.getUsername(),
-                Map.of("role", user.getRole().name())
+                Map.of("role", user.getRole().name()),
+                        user
         );
 
         return AuthenticationResponse.builder()
