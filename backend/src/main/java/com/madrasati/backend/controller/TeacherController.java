@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/teachers")
 public class TeacherController {
-    public final TeacherService teacherService;
+    private final TeacherService teacherService;
 
     @PostMapping
     public ResponseEntity<TeacherResponse> createTeacher(@RequestBody CreateTeacherRequest createTeacherRequest) {
