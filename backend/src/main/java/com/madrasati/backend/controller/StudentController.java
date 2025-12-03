@@ -1,5 +1,6 @@
 package com.madrasati.backend.controller;
 
+import com.madrasati.backend.dto.AssignStudentRequest;
 import com.madrasati.backend.dto.CreateStudentRequest;
 import com.madrasati.backend.dto.StudentListItem;
 import com.madrasati.backend.dto.StudentResponse;
@@ -19,6 +20,11 @@ public class StudentController {
     @PostMapping
     public ResponseEntity<StudentResponse> createStudent(@RequestBody CreateStudentRequest createStudentRequest) {
         return ResponseEntity.ok(studentService.createStudent(createStudentRequest));
+    }
+
+    @PatchMapping("/{id}/assign")
+    public ResponseEntity<StudentResponse> assignStudentToClass(@PathVariable Long id, @RequestBody AssignStudentRequest assignStudentRequest) {
+        return ResponseEntity.ok(studentService.assignStudentToClass(id,  assignStudentRequest));
     }
 
     @GetMapping

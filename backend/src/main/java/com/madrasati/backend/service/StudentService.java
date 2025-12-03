@@ -1,11 +1,13 @@
 package com.madrasati.backend.service;
 
+import com.madrasati.backend.dto.AssignStudentRequest;
 import com.madrasati.backend.dto.CreateStudentRequest;
 import com.madrasati.backend.dto.StudentListItem;
 import com.madrasati.backend.dto.StudentResponse;
 import com.madrasati.backend.entity.Classroom;
 import com.madrasati.backend.entity.Student;
 import com.madrasati.backend.exception.ClassroomNotFoundException;
+import com.madrasati.backend.exception.StudentNotFoundException;
 import com.madrasati.backend.repository.ClassroomRepository;
 import com.madrasati.backend.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +41,19 @@ public class StudentService {
                 .findAll()
                 .stream()
                 .map(this::mapToStudentListItem).toList();
+    }
+
+    public StudentResponse assignStudentToClass(Long studentId, AssignStudentRequest  assignStudentRequest) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(()-> new StudentNotFoundException("Student not found"));
+
+        Classroom classroom = classroomRepository.findById(assignStudentRequest.getClassroomId())
+                .orElseThrow(()-> new ClassroomNotFoundException("Classroom not found"));
+
+        student.setClassroom(classroom);
+        Student savedStudent = studentRepository.save(student);
+        return mapToStudentResponse(savedStudent);
+
     }
 
     private StudentListItem mapToStudentListItem(Student savedStudent) {
