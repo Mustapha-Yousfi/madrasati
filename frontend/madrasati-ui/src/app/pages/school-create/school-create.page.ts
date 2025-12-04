@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-schools-create',
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './schools-create.page.html',
-  styleUrl: './schools-create.page.scss',
+  templateUrl: './school-create.page.html',
+  styleUrl: './school-create.page.scss',
 })
-export class SchoolsCreatePage implements OnInit {
+export class SchoolCreatePage implements OnInit {
   private schoolService: SchoolService = inject(SchoolService);
   private fb: FormBuilder = inject(FormBuilder);
   private router: Router = inject(Router);

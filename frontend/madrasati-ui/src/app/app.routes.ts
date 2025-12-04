@@ -41,7 +41,7 @@ export const routes: Routes = [
       {
         path: 'schools/create',
         loadComponent: () =>
-          import('./pages/schools-create/schools-create.page').then((m) => m.SchoolsCreatePage),
+          import('./pages/school-create/school-create.page').then((m) => m.SchoolCreatePage),
       },
 
       // --- Redirection si / rien ---
