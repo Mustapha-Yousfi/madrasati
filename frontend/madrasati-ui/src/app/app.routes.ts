@@ -38,6 +38,11 @@ export const routes: Routes = [
         path: 'teachers',
         loadComponent: () => import('./pages/teachers/teacher.page').then((m) => m.TeacherPage),
       },
+      {
+        path: 'schools/create',
+        loadComponent: () =>
+          import('./pages/schools-create/schools-create.page').then((m) => m.SchoolsCreatePage),
+      },
 
       // --- Redirection si / rien ---
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },

@@ -1,0 +1,57 @@
+<div class="page-header">
+  <h2>Créer une école</h2>
+</div>
+
+<div class="card">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <!-- Nom -->
+    <div class="form-group">
+      <label htmlFor="name">Nom de l'école</label>
+      <input type="text" id="name" formControlName="name" placeholder="Ex: Institut Al-Nour" />
+
+      @if (form.get('name')?.touched && form.get('name')?.invalid) {
+        <div class="error">
+          @if (form.get('name')?.errors?.['required']) {
+            <p>Le nom est obligatoire.</p>
+          }
+          @if (form.get('name')?.errors?.['minlength']) {
+            <p>Le nom doit contenir au moins 3 caractères.</p>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Adresse -->
+    <div class="form-group">
+      <label htmlFor="address">Adresse</label>
+      <input
+        type="text"
+        id="address"
+        formControlName="address"
+        placeholder="Ex: 12 rue des écoles"
+      />
+
+      @if (form.get('address')?.touched && form.get('address')?.invalid) {
+        <div class="error">
+          <p>L'adresse est obligatoire.</p>
+        </div>
+      }
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label htmlFor="description">Description (optionnel)</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        rows="3"
+        placeholder="Description de l'école..."
+      ></textarea>
+    </div>
+
+    <div>
+      <button class="btn-primary submit" type="submit" [disabled]="form.invalid">Valider</button>
+      <button class="btn-secondary" routerLink="/schools">Annuler</button>
+    </div>
+  </form>
+</div>

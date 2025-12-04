@@ -12,4 +12,8 @@ export class SchoolService {
   getSchools(): Observable<SchoolListItem[]> {
     return this.http.get<SchoolListItem[]>('/api/schools');
   }
+
+  createSchool(payload: unknown) {
+    return this.http.post('/api/schools', payload);
+  }
 }
