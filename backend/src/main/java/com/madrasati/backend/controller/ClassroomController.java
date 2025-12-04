@@ -5,6 +5,7 @@ import com.madrasati.backend.dto.ClassroomResponse;
 import com.madrasati.backend.dto.CreateClassRequest;
 import com.madrasati.backend.service.ClassroomService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,8 @@ public class ClassroomController {
     @PostMapping
     public ResponseEntity<ClassroomResponse> createClassroom(@RequestBody CreateClassRequest createClassRequest) {
         ClassroomResponse classRoomResponse= classroomService.createClassroom(createClassRequest);
-        return ResponseEntity.ok().body(classRoomResponse);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(classRoomResponse);
     }
 }

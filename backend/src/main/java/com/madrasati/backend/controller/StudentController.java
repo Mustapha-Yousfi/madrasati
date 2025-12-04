@@ -6,6 +6,7 @@ import com.madrasati.backend.dto.StudentListItem;
 import com.madrasati.backend.dto.StudentResponse;
 import com.madrasati.backend.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,9 @@ public class StudentController {
 
     @PostMapping
     public ResponseEntity<StudentResponse> createStudent(@RequestBody CreateStudentRequest createStudentRequest) {
-        return ResponseEntity.ok(studentService.createStudent(createStudentRequest));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(studentService.createStudent(createStudentRequest));
     }
 
     @PatchMapping("/{id}/assign")

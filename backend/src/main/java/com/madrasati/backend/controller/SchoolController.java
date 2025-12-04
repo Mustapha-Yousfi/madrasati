@@ -5,6 +5,7 @@ import com.madrasati.backend.dto.SchoolListItem;
 import com.madrasati.backend.dto.SchoolResponse;
 import com.madrasati.backend.service.SchoolService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,9 @@ public class SchoolController {
     public ResponseEntity<SchoolResponse> createSchool(@RequestBody CreateSchoolRequest createSchoolRequest) {
 
         SchoolResponse schoolResponse = schoolService.createSchool(createSchoolRequest);
-        return ResponseEntity.ok().body(schoolResponse);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(schoolResponse);
 
     }
 }

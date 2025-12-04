@@ -6,6 +6,7 @@ import com.madrasati.backend.dto.TeacherListItem;
 import com.madrasati.backend.dto.TeacherResponse;
 import com.madrasati.backend.service.TeacherService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,9 @@ public class TeacherController {
 
     @PostMapping
     public ResponseEntity<TeacherResponse> createTeacher(@RequestBody CreateTeacherRequest createTeacherRequest) {
-        return ResponseEntity.ok(teacherService.createTeacher(createTeacherRequest));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(teacherService.createTeacher(createTeacherRequest));
     }
 
     @GetMapping
