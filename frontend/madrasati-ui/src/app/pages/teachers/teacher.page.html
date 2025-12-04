@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h2>Professeurs</h2>
+  <button class="btn-primary">+ Ajouter un professeur</button>
+</div>
+
+<div class="card">
+  @if (loading) {
+    <div class="loading">Chargement...</div>
+  }
+
+  @if (!loading) {
+    @if (teachers.length) {
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (teacher of teachers; track teacher.id) {
+            <tr>
+              <td>{{ teacher.firstName }}</td>
+              <td>{{ teacher.lastName }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  } @else {
+    <div class="empty">Aucun professeur trouvée.</div>
+  }
+</div>

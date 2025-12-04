@@ -18,23 +18,25 @@ export const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadComponent: () => import('./pages/dashboard/dashboard').then((m) => m.Dashboard),
+        loadComponent: () =>
+          import('./pages/dashboard/dashboard.page').then((m) => m.DashboardPage),
       },
       {
         path: 'schools',
-        loadComponent: () => import('./pages/schools/schools').then((m) => m.SchoolsPage),
+        loadComponent: () => import('./pages/schools/school.page').then((m) => m.SchoolPage),
       },
       {
         path: 'classes',
-        loadComponent: () => import('./pages/classes/classes').then((m) => m.ClassesPage),
+        loadComponent: () =>
+          import('./pages/classrooms/classroom.page').then((m) => m.ClassroomPage),
       },
       {
         path: 'students',
-        loadComponent: () => import('./pages/students/students').then((m) => m.StudentsPage),
+        loadComponent: () => import('./pages/students/student.page').then((m) => m.StudentPage),
       },
       {
         path: 'teachers',
-        loadComponent: () => import('./pages/teachers/teachers').then((m) => m.TeachersPage),
+        loadComponent: () => import('./pages/teachers/teacher.page').then((m) => m.TeacherPage),
       },
 
       // --- Redirection si / rien ---

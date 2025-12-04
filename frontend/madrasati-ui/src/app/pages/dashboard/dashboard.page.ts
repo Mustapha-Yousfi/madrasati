@@ -12,10 +12,10 @@ interface CurrentUserResponse {
 @Component({
   selector: 'app-dashboard',
   imports: [],
-  templateUrl: './dashboard.html',
-  styleUrl: './dashboard.scss',
+  templateUrl: './dashboard.page.html',
+  styleUrl: './dashboard.page.scss',
 })
-export class Dashboard implements OnInit {
+export class DashboardPage implements OnInit {
   private httpClient = inject(HttpClient);
   currentUser?: CurrentUserResponse;
 

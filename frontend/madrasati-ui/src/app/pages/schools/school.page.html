@@ -1,0 +1,36 @@
+<div class="page-header">
+  <h2>Écoles</h2>
+  <button class="btn-primary">+ Ajouter une école</button>
+</div>
+
+<div class="card">
+  @if (loading) {
+    <div class="loading">Chargement...</div>
+  }
+
+  @if (!loading) {
+    @if (schools.length) {
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (school of schools; track school.id) {
+            <tr>
+              <td>{{ school.name }}</td>
+              <td>{{ school.address }}</td>
+              <td>{{ school.description }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  } @else {
+    <div class="empty">Aucune école trouvée.</div>
+  }
+</div>

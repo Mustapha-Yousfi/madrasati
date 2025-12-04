@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h2>Classes</h2>
+  <button class="btn-primary">+ Ajouter une classe</button>
+</div>
+
+<div class="card">
+  @if (loading) {
+    <div class="loading">Chargement...</div>
+  } @else {
+    @if (classrooms.length > 0) {
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Niveau</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (classroom of classrooms; track classroom.id) {
+            <tr>
+              <td>{{ classroom.name }}</td>
+              <td>{{ classroom.level }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <div class="empty">Aucune classe trouvée.</div>
+    }
+  }
+</div>
