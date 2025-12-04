@@ -12,4 +12,8 @@ export class ClassroomService {
   getClassrooms(): Observable<ClassroomListItem[]> {
     return this.http.get<ClassroomListItem[]>('/api/classes');
   }
+
+  createClassroom(payload: unknown) {
+    return this.http.post('/api/classes', payload);
+  }
 }

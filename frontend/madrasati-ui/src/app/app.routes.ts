@@ -43,6 +43,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/school-create/school-create.page').then((m) => m.SchoolCreatePage),
       },
+      {
+        path: 'classroom/create',
+        loadComponent: () =>
+          import('./pages/classroom-create/classroom-create.page').then(
+            (m) => m.ClassroomCreatePage,
+          ),
+      },
 
       // --- Redirection si / rien ---
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },

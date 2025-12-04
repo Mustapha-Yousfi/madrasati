@@ -1,0 +1,56 @@
+<div class="page-header">
+  <h2>Créer une classe</h2>
+</div>
+
+<div class="card">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <!-- Nom -->
+    <div class="form-group">
+      <label htmlFor="name">Nom de la classe</label>
+      <input type="text" id="name" formControlName="name" placeholder="Ex: CM1-A" />
+
+      @if (form.get('name')?.touched && form.get('name')?.invalid) {
+        <div class="error">
+          @if (form.get('name')?.errors?.['required']) {
+            <p>Le nom est obligatoire.</p>
+          }
+          @if (form.get('name')?.errors?.['minlength']) {
+            <p>Le nom doit contenir au moins 3 caractères.</p>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- level -->
+    <div class="form-group">
+      <label htmlFor="level">Niveau</label>
+      <input type="text" id="level" formControlName="level" placeholder="Ex: CM1" />
+
+      @if (form.get('level')?.touched && form.get('level')?.invalid) {
+        <div class="error">
+          <p>Le niveau est obligatoire.</p>
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label htmlFor="school">Ecole</label>
+      <select formControlName="schoolId">
+        <option value="" disabled selected>Choisir une école</option>
+        @for (school of schools; track school.id) {
+          <option [value]="school.id">{{ school.name }}</option>
+        }
+      </select>
+      @if (form.get('schoolId')?.touched && form.get('schoolId')?.invalid) {
+        <div class="error">
+          <p>Veuillez sélectionner une école.</p>
+        </div>
+      }
+    </div>
+
+    <div>
+      <button class="btn-primary submit" type="submit" [disabled]="form.invalid">Valider</button>
+      <button class="btn-secondary" routerLink="/classes">Annuler</button>
+    </div>
+  </form>
+</div>

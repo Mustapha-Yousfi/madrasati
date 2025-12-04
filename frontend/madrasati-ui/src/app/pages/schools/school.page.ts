@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './school.page.scss',
 })
 export class SchoolPage implements OnInit {
-  private schoolService = inject(SchoolService);
+  private schoolService: SchoolService = inject(SchoolService);
 
   schools: SchoolListItem[] = [];
   loading = true;

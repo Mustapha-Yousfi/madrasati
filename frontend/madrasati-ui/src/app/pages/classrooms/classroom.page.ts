@@ -1,10 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ClassroomService } from '../../services/classroom.service';
 import { ClassroomListItem } from '../../models/classroom.model';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-classrooms',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './classroom.page.html',
   styleUrl: './classroom.page.scss',
 })

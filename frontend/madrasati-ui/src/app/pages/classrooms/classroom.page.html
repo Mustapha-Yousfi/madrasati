@@ -1,13 +1,13 @@
 <div class="page-header">
   <h2>Classes</h2>
-  <button class="btn-primary">+ Ajouter une classe</button>
+  <button class="btn-primary" routerLink="/classroom/create">+ Ajouter une classe</button>
 </div>
 
 <div class="card">
   @if (loading) {
     <div class="loading">Chargement...</div>
   } @else {
-    @if (classrooms.length > 0) {
+    @if (classrooms.length > 0) { 
       <table class="table">
         <thead>
           <tr>
